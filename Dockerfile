@@ -4,6 +4,6 @@ FROM open-liberty:springBoot2
 COPY server.xml /opt/ol/wlp/usr/servers/defaultServer/
 #ENV CLASSPATH=/opt/ol/wlp/lib/
 #COPY supplierdiversity-0.0.1-SNAPSHOT.war /opt/ol/wlp/usr/servers/defaultServer/dropins/
-COPY supplierdiversity-0.0.1-SNAPSHOT.war /opt/ol/wlp/usr/servers/defaultServer/apps/
+COPY ElogexModified1-0.0.2-SNAPSHOT.war /opt/ol/wlp/usr/servers/defaultServer/apps/
 ENTRYPOINT ["/opt/ol/wlp/bin/server", "run"]
 CMD ["defaultServer"]
