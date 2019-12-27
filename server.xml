@@ -1,33 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <server description="new server">
 
     <!-- Enable features -->
     <featureManager>
         <feature>jsp-2.3</feature>
-        <feature>webProfile-8.0</feature>
-        <feature>springBoot-2.0</feature>
+        <feature>localConnector-1.0</feature>
         <feature>servlet-4.0</feature>
-        <feature>webSocket-1.1</feature>
-        <feature>transportSecurity-1.0</feature>
+        <feature>jdbc-4.0</feature>
+        <feature>springBoot-2.0</feature>
     </featureManager>
 
     <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
-    <httpEndpoint id="defaultHttpEndpoint"
-                  httpPort="9080"
-                  httpsPort="9443" />
-    <springBootApplication
-        location="${server.config.dir}/apps/supplierdiversity-0.0.1-SNAPSHOT.war"
-        name="supplier">
-        <classloader privateLibraryRef="/opt/ol/wlp/usr/shared/extlib" delegation="parentFirst">
-                             <commonLibrary filesetRef="/opt/ol/wlp/usr/shared/extlib">
-                        <fileset includes="*.jar" dir="/opt/ol/wlp/usr/shared/extlib"></fileset>
-                </commonLibrary>
-        </classloader> 
-    </springBootApplication>
+    <httpEndpoint httpPort="9080" httpsPort="8000" id="defaultHttpEndpoint"/>
+
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
 
-    <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
-    <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
-</server>
+    <applicationMonitor updateTrigger="mbean"/>
 
+
+
+    <!-- <library id="sharedLibrary">
+                 <fileset dir="${shared.config.dir}/lib" includes="*.jar" scanInterval="5s"/>
+        <folder dir="${shared.config.dir}/lib" id="sharedlib"/>
+    </library>-->
+    <!-- <springBootApplication
+                location="${server.config.dir}/apps/supplierdiversity-0.0.1-SNAPSHOT.war"
+        name="supplier">
+        <classloader privateLibraryRef="${shared.app.dir}" delegation="parentFirst">
+                <commonLibrary filesetRef="${shared.app.dir}">
+                        <fileset includes="*.jar" dir="${shared.app.dir}"></fileset>
+                </commonLibrary>
+        </classloader>
+    </springBootApplication>-->
+
+    <webApplication contextRoot="ElogexModified1" id="ElogexModified" location="ElogexModified1-0.0.2-SNAPSHOT.war" name="ElogexModified"/>
+</server>
